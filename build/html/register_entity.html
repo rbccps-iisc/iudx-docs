@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Register Entity &mdash; IUDX  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deregister Entity" href="deregister_entity.html" />
+    <link rel="prev" title="Owner APIs" href="owner_apis.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IUDX
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="owner_apis.html">Owner APIs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Register Entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#responses">Responses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deregister_entity.html">Deregister Entity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="block.html">Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unblock.html">Unblock</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="device_apis.html">Device APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IUDX</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="apis.html">API Documentation</a> &raquo;</li>
+        
+          <li><a href="owner_apis.html">Owner APIs</a> &raquo;</li>
+        
+      <li>Register Entity</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/register_entity.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="register-entity">
+<h1>Register Entity<a class="headerlink" href="#register-entity" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><strong>Summary</strong>: The register entity API is used by the device owners to register new devices with the middleware</li>
+</ul>
+<div class="section" id="request">
+<h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">https://localhost/owner/register-entity</span></code></p>
+</li>
+<li><p class="first"><strong>Method</strong>: <code class="docutils literal notranslate"><span class="pre">POST</span></code></p>
+</li>
+<li><p class="first"><strong>Security Scheme</strong>: <a class="reference internal" href="security_schemes.html"><span class="doc">Owner credentials</span></a></p>
+</li>
+<li><p class="first"><strong>Required Headers</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>entity</td>
+<td>Name of the entity being registered</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>Body</strong>: A valid catalogue item as mentioned <a class="reference external" href="https://github.com/rbccps-iisc/smart_cities_schemas">here</a></p>
+</li>
+<li><p class="first"><strong>Example request</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">ik</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">owner</span><span class="o">/</span><span class="n">register</span><span class="o">-</span><span class="n">entity</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;id: company&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;apikey: A3k80eKbrNWUwIvQWvDQnWaJh7tTMIl5&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;entity: streetlight&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;content-type: application/json&#39;</span> \
+  <span class="o">-</span><span class="n">k</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+
+ <span class="s2">&quot;entitySchema&quot;</span><span class="p">:</span> <span class="p">{</span>
+ <span class="s2">&quot;refCatalogueSchema&quot;</span><span class="p">:</span> <span class="s2">&quot;generic_iotdevice_schema.json&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;resourceType&quot;</span><span class="p">:</span> <span class="s2">&quot;streetlight&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="s2">&quot;onstreet&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;Energy&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;still under development!&quot;</span>
+ <span class="p">],</span>
+ <span class="s2">&quot;refCatalogueSchemaRelease&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">13.0143335</span><span class="p">,</span>
+   <span class="s2">&quot;ontologyRef&quot;</span><span class="p">:</span> <span class="s2">&quot;http:\/\/www.w3.org\/2003\/01\/geo\/wgs84_pos#&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">77.5678424</span><span class="p">,</span>
+   <span class="s2">&quot;ontologyRef&quot;</span><span class="p">:</span> <span class="s2">&quot;http:\/\/www.w3.org\/2003\/01\/geo\/wgs84_pos#&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IISC&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;website&quot;</span><span class="p">:</span> <span class="s2">&quot;http:\/\/www.iisc.ac.in&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Robert Bosch Centre for Cyber Physical Systems, IISc&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;website&quot;</span><span class="p">:</span> <span class="s2">&quot;http:\/\/rbccps.org&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;geoLocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;80 ft Road, Bangalore, 560012&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;data_schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">&quot;dataSamplingInstant&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Sampling Time in EPOCH format&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;caseTemperature&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Temperature of the device casing&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;degreeCelsius&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;powerConsumption&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Power consumption of the device&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;watts&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;luxOutput&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;lux output of LED measured at LED&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;lux&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;ambientLux&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;lux value of ambient&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;lux&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;targetPowerState&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;enum&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="s2">&quot;ON&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;OFF&quot;</span>
+       <span class="p">],</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;If set to ON, turns ON the device. If OFF turns OFF the device. Writeable parameter. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;targetBrightnessLevel&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Number between 0 to 100 to indicate the percentage brightness level. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;percent&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;targetControlPolicy&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;enum&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="s2">&quot;AUTO_TIMER&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;AUTO_LUX&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;MANUAL&quot;</span>
+       <span class="p">],</span>
+       <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Indicates which of the behaviours the device should implement. AUTO_TIMER is timer based, AUTO_LUX uses ambient light and MANUAL is controlled by app. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;targetAutoTimerParams&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;targetOnTime&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Indicates time of day in seconds from 12 midnight when device turns ON in AUTO_TIMER. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;targetOffTime&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Indicates time of day in seconds from 12 midnight when device turns OFF in AUTO_TIMER. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+         <span class="p">}</span>
+       <span class="p">}</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;targetAutoLuxParams&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;targetOnLux&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Indicates ambient lux when device turns ON in AUTO_LUX. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;lux&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;targetOffLux&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Indicates ambient lux when device turns OFF in AUTO_LUX. Writeable only allowed for authorized apps&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;lux&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;accessModifier&quot;</span><span class="p">:</span> <span class="s2">&quot;protected&quot;</span>
+         <span class="p">}</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="n">false</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;serialization_from_device&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;protocol-buffers&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;schema_ref&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;proto 2&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;mainMessageName&quot;</span><span class="p">:</span> <span class="s2">&quot;sensor_values&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/raw.githubusercontent.com\/rbccps-iisc\/applications-streetlight\/master\/proto_stm\/txmsg\/sensed.proto&quot;</span>
+   <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;serialization_to_device&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;protocol-buffers&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;schema_ref&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;proto 2&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;mainMessageName&quot;</span><span class="p">:</span> <span class="s2">&quot;targetConfigurations&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/raw.githubusercontent.com\/rbccps-iisc\/applications-streetlight\/master\/proto_stm\/rxmsg\/actuated.proto&quot;</span>
+   <span class="p">}</span>
+ <span class="p">},</span>
+<span class="p">}}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="responses">
+<h2>Responses<a class="headerlink" href="#responses" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">201</span> <span class="pre">Created</span></code></p>
+<blockquote>
+<div><ul>
+<li><p class="first">The entity has been successfully created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;company/streetlight&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="s2">&quot;BdPujwdwmMXpcXRpAuwwNfasGeTHeYgK&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></code></p>
+<blockquote>
+<div><ul>
+<li><p class="first">If any of the required headers are missing from the request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;inputs missing from headers&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the entity name is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;entity is not valid&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span></code></p>
+<blockquote>
+<div><ul>
+<li><p class="first">If the owner name is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;id is not valid&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">409</span> <span class="pre">Conflict</span></code></p>
+<blockquote>
+<div><ul>
+<li><p class="first">If the entity id is already in use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;id already used&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deregister_entity.html" class="btn btn-neutral float-right" title="Deregister Entity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="owner_apis.html" class="btn btn-neutral" title="Owner APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert Bosch Centre for Cyber-Physical Systems, Indian Institute of Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

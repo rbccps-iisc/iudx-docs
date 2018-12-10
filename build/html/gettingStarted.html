@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; IUDX  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global Security Schemes" href="security_schemes.html" />
+    <link rel="prev" title="Welcome to IUDX" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IUDX
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iudx-installation">IUDX Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registering-your-first-device">Registering your first device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-from-your-device">Publishing from your device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IUDX</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gettingStarted.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>This guide will help you to quickly get started with a single node instance of IUDX and start publishing data from a device.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Install Docker</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">docker</span><span class="o">.</span><span class="n">io</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add user to the docker group</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G docker $USER
+</pre></div>
+</div>
+</li>
+<li><p class="first">Logout and log back in.</p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and note down the name of the interface you’re connected to.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/ifconfig.png"><img alt="alternate textI" class="align-center" src="_images/ifconfig.png" style="width: 550px; height: 250px;" /></a>
+</div></blockquote>
+<p>In the above example the interface name is <code class="docutils literal notranslate"><span class="pre">enp9s0</span></code></p>
+</li>
+<li><p class="first">Now run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nmcli</span> <span class="n">device</span> <span class="n">show</span> <span class="n">enp9s0</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">enp9s0</span></code> with your respective interface name. The output should be something like this</p>
+<a class="reference internal image-reference" href="_images/nmcli.png"><img alt="alternate textI" class="align-center" src="_images/nmcli.png" style="width: 700px; height: 175px;" /></a>
+<p>Note down the DNS from <code class="docutils literal notranslate"><span class="pre">IP4.DNS</span></code> section</p>
+</li>
+<li><p class="first">Add DNS obtained in the previous step to the file <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> If the file does not exist, create it. The entry should look something like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span> <span class="s2">&quot;8.8.4.4&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Add the obtained DNS to the above JSON array. So the final entry should look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span><span class="s2">&quot;8.8.4.4&quot;</span><span class="p">,</span><span class="s2">&quot;168.95.1.1&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Of course, the DNS would change according to your network.</p>
+</li>
+<li><p class="first">Add DNS in <code class="docutils literal notranslate"><span class="pre">/etc/default/docker</span></code> file as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DOCKER_OPTS</span><span class="o">=</span><span class="s2">&quot;--dns 8.8.8.8 --dns 8.8.4.4 --dns 168.95.1.1&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Restart Docker</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">docker</span> <span class="n">restart</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="iudx-installation">
+<h2>IUDX Installation<a class="headerlink" href="#iudx-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Clone IUDX git repo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">rbccps</span><span class="o">-</span><span class="n">iisc</span><span class="o">/</span><span class="n">corinthian</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install IUDX</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docker</span><span class="o">/</span>
+<span class="o">./</span><span class="n">install</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="registering-your-first-device">
+<h2>Registering your first device<a class="headerlink" href="#registering-your-first-device" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Once IUDX has installed you can now start registering devices with it. Let’s create a simple test device for the sake of illustration</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Get the randomly generated admin apikey for the current installation by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="nb">vars</span><span class="o">/</span><span class="n">admin</span><span class="o">.</span><span class="n">passwd</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Register a device by using this apikey as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">register</span><span class="o">.</span><span class="n">sh</span> <span class="n">admin</span> <span class="o">&lt;</span><span class="n">admin_apikey</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">device_name</span><span class="o">&gt;</span>
+
+<span class="n">E</span><span class="o">.</span><span class="n">g</span><span class="o">.</span>
+
+<span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">register</span><span class="o">.</span><span class="n">sh</span> <span class="n">admin</span> <span class="n">RFS3zYWpwfqse1eHFyZUydY4q0rI9XzN</span> <span class="n">streetlight</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">This will give you the details of the registration</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;admin/streetlight&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;apikey&quot;</span><span class="p">:</span> <span class="s2">&quot;CqLXHzTTXOAWmPRaoLpNRKCd4MfAaHCJ&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="publishing-from-your-device">
+<h2>Publishing from your device<a class="headerlink" href="#publishing-from-your-device" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">You can now publish data from this device using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">publish</span><span class="o">.</span><span class="n">sh</span> <span class="n">admin</span><span class="o">/</span><span class="n">streetlight</span> <span class="n">CqLXHzTTXOAWmPRaoLpNRKCd4MfAaHCJ</span> <span class="n">admin</span><span class="o">/</span><span class="n">streetlight</span> <span class="n">routing_key</span> <span class="n">protected</span> <span class="n">test_message</span>
+</pre></div>
+</div>
+<p>This will publish <code class="docutils literal notranslate"><span class="pre">test_message</span></code> to the exchange <code class="docutils literal notranslate"><span class="pre">admin/streetlight.protected</span></code> with routing key as <code class="docutils literal notranslate"><span class="pre">routing_key</span></code> and message type as <code class="docutils literal notranslate"><span class="pre">protected</span></code></p>
+</li>
+<li><p class="first">That’s it! You can similarly register more devices and apps with the IUDX middleware.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="security_schemes.html" class="btn btn-neutral float-right" title="Global Security Schemes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to IUDX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert Bosch Centre for Cyber-Physical Systems, Indian Institute of Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

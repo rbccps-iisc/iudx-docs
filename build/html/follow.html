@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Follow &mdash; IUDX  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unfollow" href="unfollow.html" />
+    <link rel="prev" title="Device / Owner APIs" href="device_owner_apis.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IUDX
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owner_apis.html">Owner APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owner_admin_apis.html">Owner / Admin APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_apis.html">Device APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Follow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unfollow.html">Unfollow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="share.html">Share</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bind.html">Bind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unbind.html">Unbind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="follow_requests.html">Follow Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="follow_status.html">Follow Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reject_follow.html">Reject Follow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="permissions.html">Permissions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IUDX</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="apis.html">API Documentation</a> &raquo;</li>
+        
+          <li><a href="device_owner_apis.html">Device / Owner APIs</a> &raquo;</li>
+        
+      <li>Follow</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/follow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="follow">
+<h1>Follow<a class="headerlink" href="#follow" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><strong>Summary</strong>: The follow API is a data exchange enabling API that is used to express interest in another entity’s data. It could either be for reading, writing, or both. It is time-bound and the requestor has to explicitly mention the duration for which they would like to the data. Once the follow request is made, the <code class="docutils literal notranslate"><span class="pre">follow-status</span></code> API can be queried to check if the follow request is approved by the requested device.</li>
+</ul>
+<div class="section" id="request">
+<h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Endpoint</strong>: Either of</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">https://localhost/entity/follow</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">https://localhost/owner/follow</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Method</strong>: <code class="docutils literal notranslate"><span class="pre">POST</span></code></p>
+</li>
+<li><p class="first"><strong>Security Scheme</strong>: Either of</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="security_schemes.html"><span class="doc">Device Credentials</span></a></li>
+<li><a class="reference internal" href="security_schemes.html"><span class="doc">Owner Credentials</span></a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Required Headers</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>apikey</td>
+<td>API key of the device</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>Body</strong>: The body must contain certain specific fields as mentioned below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>entityID</td>
+<td>Name of the entity which the requestor is interested in</td>
+</tr>
+<tr class="row-odd"><td>permission</td>
+<td><dl class="first last docutils">
+<dt>Can be any of:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">read</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">write</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">read-write</span></code></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>validity</td>
+<td><p class="first">Of the form &lt;Integer&gt;&lt;Metric&gt;</p>
+<dl class="docutils">
+<dt>Metric can be any of:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">Y</span></code>: Year</li>
+<li><code class="docutils literal notranslate"><span class="pre">M</span></code>: Month</li>
+<li><code class="docutils literal notranslate"><span class="pre">D</span></code>: Day</li>
+</ul>
+</dd>
+</dl>
+<p class="last">Example: 10D for 10 days, 1Y  for 1 Year and so on</p>
+</td>
+</tr>
+<tr class="row-odd"><td>requestorID</td>
+<td>Name of the requesting device</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>Example Request</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8443</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">follow</span> \
+<span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
+<span class="o">-</span><span class="n">H</span> <span class="s1">&#39;apikey: ko6A9npXespXwyK85mtfCfmHSDLFYJZMOxScjk9iUJy&#39;</span> \
+<span class="o">-</span><span class="n">d</span>
+<span class="s1">&#39;{</span>
+     <span class="s2">&quot;entityID&quot;</span><span class="p">:</span> <span class="s2">&quot;device1&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;permission&quot;</span><span class="p">:</span><span class="s2">&quot;read&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;validity&quot;</span><span class="p">:</span> <span class="s2">&quot;10D&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;requestorID&quot;</span><span class="p">:</span><span class="s2">&quot;device2&quot;</span>
+ <span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Example Response</strong>:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Follow request has been made to device1 with permission read at 2018-09-10T09:42:57.226Z&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Possible error scenarios</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">authentication</span> <span class="pre">credentials</span></code> : Make sure you have provided the right API key</li>
+<li><code class="docutils literal notranslate"><span class="pre">Possible</span> <span class="pre">missing</span> <span class="pre">fields</span></code>: The fields required in the body, as given above, are not all present according to the format.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="unfollow.html" class="btn btn-neutral float-right" title="Unfollow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="device_owner_apis.html" class="btn btn-neutral" title="Device / Owner APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert Bosch Centre for Cyber-Physical Systems, Indian Institute of Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
