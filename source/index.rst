@@ -18,10 +18,7 @@ Contents:
 
    gettingStarted
    security_schemes
-   guide 
    apis
    usage
-   cdxsubsystems
-   cdxusers
    license
    help

@@ -89,6 +89,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Follow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#responses">Responses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="unfollow.html">Unfollow</a></li>
@@ -200,24 +201,6 @@
 <li><p class="first"><strong>Required Headers</strong>:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="40%" />
-<col width="60%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>apikey</td>
-<td>API key of the device</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li><p class="first"><strong>Body</strong>: The body must contain certain specific fields as mentioned below:</p>
-<table border="1" class="docutils">
-<colgroup>
 <col width="23%" />
 <col width="77%" />
 </colgroup>
@@ -227,7 +210,7 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>entityID</td>
+<tr class="row-even"><td>to</td>
 <td>Name of the entity which the requestor is interested in</td>
 </tr>
 <tr class="row-odd"><td>permission</td>
@@ -243,50 +226,136 @@
 </td>
 </tr>
 <tr class="row-even"><td>validity</td>
-<td><p class="first">Of the form &lt;Integer&gt;&lt;Metric&gt;</p>
-<dl class="docutils">
-<dt>Metric can be any of:</dt>
-<dd><ul class="first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">Y</span></code>: Year</li>
-<li><code class="docutils literal notranslate"><span class="pre">M</span></code>: Month</li>
-<li><code class="docutils literal notranslate"><span class="pre">D</span></code>: Day</li>
-</ul>
-</dd>
-</dl>
-<p class="last">Example: 10D for 10 days, 1Y  for 1 Year and so on</p>
-</td>
+<td>Validity period specified in number of hours.</td>
 </tr>
-<tr class="row-odd"><td>requestorID</td>
-<td>Name of the requesting device</td>
+<tr class="row-odd"><td>topic</td>
+<td>Topic of the message the requestor is interested in.
+E.g. <code class="docutils literal notranslate"><span class="pre">errors</span></code>, <code class="docutils literal notranslate"><span class="pre">logs</span></code>, <code class="docutils literal notranslate"><span class="pre">alerts</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code> and
+so on.</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><strong>Example Request</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8443</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">follow</span> \
-<span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
-<span class="o">-</span><span class="n">H</span> <span class="s1">&#39;apikey: ko6A9npXespXwyK85mtfCfmHSDLFYJZMOxScjk9iUJy&#39;</span> \
-<span class="o">-</span><span class="n">d</span>
-<span class="s1">&#39;{</span>
-     <span class="s2">&quot;entityID&quot;</span><span class="p">:</span> <span class="s2">&quot;device1&quot;</span><span class="p">,</span>
-     <span class="s2">&quot;permission&quot;</span><span class="p">:</span><span class="s2">&quot;read&quot;</span><span class="p">,</span>
-     <span class="s2">&quot;validity&quot;</span><span class="p">:</span> <span class="s2">&quot;10D&quot;</span><span class="p">,</span>
-     <span class="s2">&quot;requestorID&quot;</span><span class="p">:</span><span class="s2">&quot;device2&quot;</span>
- <span class="p">}</span><span class="s1">&#39;</span>
-</pre></div>
-</div>
+<li><p class="first"><strong>Optional headers</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>message-type</td>
+<td>Either of <code class="docutils literal notranslate"><span class="pre">protected</span></code> or <code class="docutils literal notranslate"><span class="pre">diagnostics</span></code></td>
+</tr>
+<tr class="row-odd"><td>from</td>
+<td>Name of the device on behalf of which the follow request
+is being made (When the owner calls this API)</td>
+</tr>
+</tbody>
+</table>
 </li>
-<li><p class="first"><strong>Example Response</strong>:</p>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Follow request has been made to device1 with permission read at 2018-09-10T09:42:57.226Z&quot;</span><span class="p">}</span>
-</pre></div>
+</ul>
 </div>
-</li>
-<li><p class="first"><strong>Possible error scenarios</strong>:</p>
+<div class="section" id="responses">
+<h2>Responses<a class="headerlink" href="#responses" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">202</span> <span class="pre">Accepted</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">authentication</span> <span class="pre">credentials</span></code> : Make sure you have provided the right API key</li>
-<li><code class="docutils literal notranslate"><span class="pre">Possible</span> <span class="pre">missing</span> <span class="pre">fields</span></code>: The fields required in the body, as given above, are not all present according to the format.</li>
+<li>The follow request has been accepted for processing and is under review by the requested device or its owner (whichever may be the case)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></code></p>
+<blockquote>
+<div><ul>
+<li><p class="first">If any of the required headers are missing from the request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;inputs missing from headers&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If <code class="docutils literal notranslate"><span class="pre">message-type</span></code> is provided but is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid message-type&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the requested <code class="docutils literal notranslate"><span class="pre">validity</span></code> is out of range:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;validity must be in number of hours&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the requested <code class="docutils literal notranslate"><span class="pre">permission</span></code> is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid permission&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span></code>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">If the owner calls the API but the <code class="docutils literal notranslate"><span class="pre">from</span></code> header is missing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;from value missing in header&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When the <code class="docutils literal notranslate"><span class="pre">from</span></code> header is present but not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;from is not a valid entity&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When the owner calling the API is not the owner of the <code class="docutils literal notranslate"><span class="pre">from</span></code> device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;you are not the owner of the &#39;from&#39; entity&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If <code class="docutils literal notranslate"><span class="pre">to</span></code> is not a valid entity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;&#39;to&#39; is not a valid entity&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If device is not autonomous:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;unauthorized&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the requested <code class="docutils literal notranslate"><span class="pre">validity</span></code> is not valid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid validity&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If the requested topic is invalid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid topic&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
 </ul>
 </div></blockquote>
 </li>

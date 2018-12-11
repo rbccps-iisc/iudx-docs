@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deregister" href="deregister.html" />
-    <link rel="prev" title="Bind" href="bind.html" /> 
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="General APIs" href="general_apis.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,19 +80,26 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="register.html">Register</a></li>
-<li class="toctree-l2"><a class="reference internal" href="publish.html">Publish</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subscribe.html">Subscribe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="follow.html">Follow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="share.html">Share</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bind.html">Bind</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Catalogue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deregister.html">Deregister</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unfollow.html">Unfollow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unbind.html">Unbind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owner_apis.html">Owner APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owner_admin_apis.html">Owner / Admin APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_apis.html">Device APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="general_apis.html">General APIs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Catalogue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#response">Response</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help and Support</a></li>
 </ul>
 
             
@@ -140,6 +147,8 @@
         
           <li><a href="apis.html">API Documentation</a> &raquo;</li>
         
+          <li><a href="general_apis.html">General APIs</a> &raquo;</li>
+        
       <li>Catalogue</li>
     
     
@@ -163,9 +172,246 @@
 <h1>Catalogue<a class="headerlink" href="#catalogue" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><strong>Summary</strong>: The catalogue API is used to browse through the list of devices registered with the middleware.</li>
-<li><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">https://localhost:8443/api/1.0.0/cat</span></code></li>
-<li><strong>Method</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span></code></li>
 </ul>
+<div class="section" id="request">
+<h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">https://localhost/catalog</span></code></li>
+<li><strong>Method</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span></code></li>
+<li><strong>Security Scheme</strong>: None, since it is a publicly accessible API meant for entity search and discovery</li>
+</ul>
+</div>
+<div class="section" id="response">
+<h2>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li>A list of devices registered with the middleware along with their schemas:</li>
+</ul>
+<blockquote>
+<div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;item-metadata&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:X-rbccps:rels:isContentType&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;val&quot;</span><span class="p">:</span> <span class="s2">&quot;application/vnd.rbccps.catalogue+json&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:X-rbccps:rels:hasDescription:en&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;val&quot;</span><span class="p">:</span> <span class="s2">&quot;Catalogue test&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:X-rbccps:rels:supportsSearch&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;val&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:X-rbccps:search:simple&quot;</span>
+        <span class="p">}</span>
+<span class="p">],</span>
+<span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&quot;refCatalogueSchema&quot;</span><span class="p">:</span> <span class="s2">&quot;cdx_base_staticThing.json&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;6663e818bdf179e8090a737c230241d8sensoragent&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;air quality&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pollution&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;aqm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;aqi&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;refCatalogueSchemaRelease&quot;</span><span class="p">:</span> <span class="s2">&quot;0.2.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;latitude&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">12.84534</span><span class="p">,</span>
+                <span class="nt">&quot;ontologyRef&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.w3.org/2003/01/geo/wgs84_pos#&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;longitude&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">77.665444</span><span class="p">,</span>
+                <span class="nt">&quot;ontologyRef&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.w3.org/2003/01/geo/wgs84_pos#&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;owner&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ELCITA&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;website&quot;</span><span class="p">:</span> <span class="s2">&quot;https://elcita.in&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;geoLocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Infosys Avenue, Electronics City Phase 1, Electronic City, Bengaluru, Karnataka 560100&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Bangalore&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;message_schemas&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&quot;observation_msg&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="nt">&quot;schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-07/schema#&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;describes&quot;</span><span class="p">:</span> <span class="s2">&quot;Observation messages from climo air quality monitor &quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;fromThing&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="s2">&quot;low&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                        <span class="s2">&quot;air&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;pollution&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;SO2&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;CO2&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;CO&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;NO&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;NO2&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;PM2.5&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;PM10&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;Humidity&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;Ozone&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;O&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;Noise&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;Light&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;UV&quot;</span>
+                                <span class="p">],</span>
+                                <span class="nt">&quot;sharing&quot;</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                        <span class="s2">&quot;climoID&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;timestamp&quot;</span>
+                                <span class="p">],</span>
+                                <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="nt">&quot;climoID&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Id for the aqm unit&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;EPOCH time (milli-seconds) for the inbound message&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_LIGHT&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Ambient illumination incident to the right side of the climo&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">188000</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;Lux&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_AIR_PRESSURE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Air pressure, no resolutions given&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_TEMPERATURE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Ambient temperature&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">-40</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;celcius&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_CARBON_DIOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Atmospheric CO2&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppm&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_RELATIVE_HUMIDITY&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Relative humidity&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;percentage&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_SOUND&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Ambient sound level, normalized with the hearing range&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dBA&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_PM2P5&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: +/- 5 ug/m3&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ug/m3&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_PM10&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: +/- 5 ug/m3&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ug/m3&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_NITROGEN_DIOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: 10 ppb&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppb&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_CARBON_MONOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: 100 ppb&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">31000</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppb&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_SULPHUR_DIOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: 10 ppb&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppb&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_NITRIC_OXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: 10 ppb&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppb&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_OZONE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Resolution: 10 ppb&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;ppb&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;SENS_ULTRA_VIOLET&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;V up to 15 UVI &quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;UVI&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_PM2P5&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for PM2_5&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_PM10&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for PM10&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_NITROGEN_DIOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for NO2&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_CARBON_MONOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for CO&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_SULPHUR_DIOXIDE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for SO2&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">},</span>
+                                        <span class="nt">&quot;AQI_SENS_OZONE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Region wide AQI Index for O3&quot;</span><span class="p">,</span>
+                                                <span class="nt">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;dimensionless&quot;</span>
+                                        <span class="p">}</span>
+                                <span class="p">},</span>
+                                <span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">false</span>
+                        <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+<span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+</div>
 </div>
 
 
@@ -176,10 +422,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deregister.html" class="btn btn-neutral float-right" title="Deregister" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="bind.html" class="btn btn-neutral" title="Bind" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="general_apis.html" class="btn btn-neutral" title="General APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

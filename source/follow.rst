@@ -23,7 +23,7 @@ Request
   +-----------------+---------------------------------------------------------+
   |      Field      |      Description                                        |
   +=================+=========================================================+
-  |    to           | Name of the entity which the requestor is interested in |
+  |       to        | Name of the entity which the requestor is interested in |
   +-----------------+---------------------------------------------------------+
   |   permission    | Can be any of:                                          |
   |                 |   - ``read``                                            |
@@ -37,17 +37,90 @@ Request
   |                 | so on.                                                  |
   +-----------------+---------------------------------------------------------+
 
+* **Optional headers**:
+
+  +-----------------+----------------------------------------------------------+
+  |     Field       |     Description                                          |
+  +=================+==========================================================+
+  |  message-type   | Either of ``protected`` or ``diagnostics``               |
+  +-----------------+----------------------------------------------------------+
+  |      from       | Name of the device on behalf of which the follow request |
+  |                 | is being made (When the owner calls this API)            |
+  +-----------------+----------------------------------------------------------+
 
 Responses
 ^^^^^^^^^
 
-* **Example Response**:
+* ``202 Accepted``:
 
-  .. code-block:: JSON
-   
-   {"status":"Follow request has been made to device1 with permission read at 2018-09-10T09:42:57.226Z"}
+    - The follow request has been accepted for processing and is under review by the requested device or its owner (whichever may be the case)
 
-* **Possible error scenarios**:
-  
-   - ``Invalid authentication credentials`` : Make sure you have provided the right API key
-   - ``Possible missing fields``: The fields required in the body, as given above, are not all present according to the format. 
+* ``400 Bad Request`` 
+    
+    - If any of the required headers are missing from the request::
+
+	{
+	    "error": "inputs missing from headers"
+	}
+
+    - If ``message-type`` is provided but is not valid::
+
+	{
+	    "error": "invalid message-type"
+	}
+
+    - If the requested ``validity`` is out of range::
+
+	{
+	    "error": "validity must be in number of hours"
+	}
+
+    - If the requested ``permission`` is not valid::
+
+	{
+	    "error": "invalid permission"
+	}
+
+* ``403 Forbidden``:
+
+    - If the owner calls the API but the ``from`` header is missing::
+
+	{
+	    "error": "from value missing in header"
+	}
+    
+    - When the ``from`` header is present but not valid::
+
+	{
+	    "error": "from is not a valid entity"
+	}
+
+    - When the owner calling the API is not the owner of the ``from`` device::
+
+	{
+	    "error": "you are not the owner of the 'from' entity"
+	}
+
+    - If ``to`` is not a valid entity::
+
+	{
+	    "error": "'to' is not a valid entity"
+	}
+
+    - If device is not autonomous::
+
+	{
+	    "error": "unauthorized"
+	}
+
+    - If the requested ``validity`` is not valid::
+
+	{
+	    "error": "invalid validity"
+	}
+
+    - If the requested topic is invalid::
+
+	{
+	    "error": "invalid topic"
+	}

@@ -1,65 +1,110 @@
-Unfollow 
+Unfollow
 ========
 
-* **Summary**: The unfollow API is a complement of the ``unshare`` API for the requestor. If the requestor at any point feels that he/she no longer 
-  needs the permissions granted by a device, they can call the ``unfollow`` API. This will delete entries from LDAP and unbind the queue if bound. 
+* **Summary**: If the requester at any point feels that they no longer need the permissions granted to them by another device, they can invoke the ``unfollow`` API. 
 
-* **Endpoint**: ``https://localhost:8443/api/1.0.0/follow``
+Request
+^^^^^^^
 
-* **Method**: ``DELETE``
+* **Endpoint**: Either of 
+
+    - ``https://localhost/entity/unfollow``
+    - ``https://localhost/owner/unfollow``
+
+* **Method**: ``POST``
+
+* **Security Scheme**: Either of 
+
+    - :doc:`Device Credentials <security_schemes>`
+    - :doc:`Owner Credentials <security_schemes>`
 
 * **Required Headers**:
-
-  +-----------------+-------------------------+
-  |   Header Name   |      Description        |
-  +=================+=========================+
-  |     apikey      |  API key of the device  |
-  +-----------------+-------------------------+
-
-* **Body**: The body must contain certain specific fields as mentioned below:
 
   +-----------------+---------------------------------------------------------+
   |      Field      |      Description                                        |
   +=================+=========================================================+
-  |    entityID     | Name of the entity which the requestor is interested in |
+  |       to        | Name of the entity which the requestor is interested in |
   +-----------------+---------------------------------------------------------+
   |   permission    | Can be any of:                                          |
   |                 |   - ``read``                                            |
   |                 |   - ``write``                                           |
   |                 |   - ``read-write``                                      |
   +-----------------+---------------------------------------------------------+
-  |    validity     | Of the form <Integer><Metric>                           |
-  |                 |                                                         |
-  |                 | Metric can be any of:                                   |
-  |                 |   - ``Y``: Year                                         |
-  |                 |   - ``M``: Month                                        |
-  |                 |   - ``D``: Day                                          |
-  |                 |                                                         |
-  |                 | Example: 10D for 10 days, 1Y  for 1 Year and so on      |
+  |  message-type   | Either of ``protected`` or ``diagnostics``              |
   +-----------------+---------------------------------------------------------+
-  |  requestorID    | Name of the requesting device                           |
+  |     topic       | Topic of the message for which the follow was approved  | 
   +-----------------+---------------------------------------------------------+
 
-* **Example Request**::
-  
-   curl -X DELETE \
-   https://localhost:8443/api/1.0.0/follow \
-   -H 'Content-Type: application/json' \
-   -H 'apikey: ko6A9npXespXwyK85mtfCfmHSDLFYJZMOxScjk9iUJy' \
-   -d 
-   '{
-        "entityID": "device1",
-        "permission":"read", 
-        "validity": "10D",
-        "requestorID":"device2"
-    }'
+* **Optional headers**:
 
-* **Example Response**::
-  
-   Successfully unfollowed device1
+  +-----------------+----------------------------------------------------------+
+  |     Field       |     Description                                          |
+  +=================+==========================================================+
+  |      from       | Name of the device on behalf of which the follow request |
+  |                 | is being made (When the owner calls this API)            |
+  +-----------------+----------------------------------------------------------+
 
+Responses
+^^^^^^^^^
 
-* **Possible error scenarios**:
-  
-   - ``Invalid authentication credentials`` : Make sure you have provided the right API key
-   - ``Possible missing fields``: The fields required in the body, as given above, are not all present according to the format. 
+* ``200 OK``:
+
+    - Unfollow was successful 
+
+* ``400 Bad Request`` 
+    
+    - If any of the required headers are missing from the request::
+
+	{
+	    "error": "inputs missing from headers"
+	}
+
+    - If ``message-type`` is provided but is not valid::
+
+	{
+	    "error": "invalid message-type"
+	}
+
+    - If the provided ``permission`` is not valid::
+
+	{
+	    "error": "invalid permission string"
+	}
+
+* ``403 Forbidden``:
+
+    - If the owner calls the API but the ``from`` header is missing::
+
+	{
+	    "error": "from value missing in header"
+	}
+    
+    - When the ``from`` header is present but not valid::
+
+	{
+	    "error": "from is not a valid entity"
+	}
+
+    - When the owner calling the API is not the owner of the ``from`` device::
+
+	{
+	    "error": "you are not the owner of the 'from' entity"
+	}
+
+    - If ``to`` is not a valid entity::
+
+	{
+	    "error": "'to' is not a valid entity"
+	}
+
+    - If device is not autonomous or if there was no such acl entry::
+
+	{
+	    "error": "unauthorized"
+	}
+
+    - If the provided topic is invalid::
+
+	{
+	    "error": "invalid topic"
+	}

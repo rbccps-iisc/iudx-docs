@@ -12,3 +12,4 @@ The following subsection contains the documentation for all the APIs
    owner_admin_apis
    device_apis
    device_owner_apis
+   general_apis

@@ -1,53 +1,103 @@
 Bind 
 =====
 
-* **Summary**: The bind API is used to enable binding between queues and exchanges. A device owner has complete control over binding and unbinding exchanges and queues
-  that belong to them. However, if they wish to bind to a different owner's device, they would need to go through the formal process of ``follow`` and ``share``. On the
-  other hand, all devices are free to bind to the public exchange of any other device. 
+* **Summary**: The bind API is used to facilitate binding between exchanges and queues of different devices. When a device obtains read access to another device it can bind its queue to that device's exchange using the ``bind`` API. The binding can be done either to its regular queue or to its priority queue depending on the user's preference. 
+  
+Request
+^^^^^^^
 
-* **Endpoint**: ``https://localhost:8443/api/1.0.0/bind/<queue>/<exchange>``
+* **Endpoint**: Either of
 
-  +--------------+-------------------------------------------------------------------+ 
-  |  Field       | Description                                                       | 
-  +==============+===================================================================+ 
-  | <queue>      | Name of the queue which needs to be bound to an exchange.         | 
-  +--------------+-------------------------------------------------------------------+ 
-  | <exchange>   | Exchange name. If this does not belong to the owner, the process  |
-  |              |                                                                   | 
-  |              | of ``follow`` and ``share`` must happen.                          | 
-  +--------------+-------------------------------------------------------------------+ 
+    - ``https://localhost/entity/bind``
+    - ``https://localhost/owner/bind``
 
-* **Method**: ``GET``
+* **Method**: ``POST``
+
+* **Security Scheme**: Either of
+
+    - :doc:`Device credentials <security_schemes>`
+    - :doc:`Owner credentials <security_schemes>`
 
 * **Required Headers**:
-
-  +-----------------+-------------------------+
-  |   Header Name   |      Description        |
-  +=================+=========================+
-  |     apikey      |  API key of the device  |
-  +-----------------+-------------------------+
-
-* **Optional Headers**:
-
-  +------------------+--------------------------------------------------------------+
-  |   Header Name    |                Description                                   |
-  +==================+==============================================================+
-  |   routingKey     |   Topic with which the exchange must be bound to the queue   |
-  +------------------+--------------------------------------------------------------+
-
-* **Example Request**::
   
-   curl -X GET \
-   https://localhost:8443/api/1.0.0/bind/app/streetlight.protected \
-   -H 'apikey: SLJTRxPdAVrslmHxcFPfQNWykVOIiIZ2hdiy0FSQOhB' \
-   -H 'routingKey: #'
+  +-----------------+---------------------------------------------------------------------------+
+  |   Header Name   |      Description                                                          |
+  +=================+===========================================================================+
+  |       to        |  Name of the device to bind to                                            | 
+  +-----------------+---------------------------------------------------------------------------+
+  |      topic      |  Topic of the message, e.g. ``temperature``, ``logs``, ``errors``, etc.   |
+  +-----------------+---------------------------------------------------------------------------+
+  |   message-type  |  Either of ``public``, ``protected``, ``private`` or ``diagnostics``      |
+  +-----------------+---------------------------------------------------------------------------+
 
-* **Response**::
 
-   Bind Queue OK
+Responses
+^^^^^^^^^
 
-* **Possible error scenarios**:
+* ``200 OK``
 
-   - ``Invalid authentication credentials``: Make sure you have provided the right API key
-   - ``You do not have access to bind this queue``: Make sure that the follow request made 
-     to a device has been approved before attempting to bind.
+    - The bind was successful 
+
+* ``400 Bad Request`` 
+    
+    - If any of the required headers are missing from the request::
+
+	{
+	    "error": "inputs missing from headers"
+	}
+
+    - If ``message-type`` is provided but is not valid::
+
+	{
+	    "error": "message-type is invalid"
+	}
+
+    - If the requested ``validity`` is out of range::
+
+	{
+	    "error": "validity must be in number of hours"
+	}
+
+    - If the requested ``permission`` is not valid::
+
+	{
+	    "error": "invalid permission"
+	}
+
+* ``403 Forbidden``:
+
+    - If the owner calls the API but the ``from`` header is missing::
+
+	{
+	    "error": "from value missing in header"
+	}
+    
+    - When the ``from`` header is present but not valid::
+
+	{
+	    "error": "from is not a valid entity"
+	}
+
+    - When the owner calling the API is not the owner of the ``from`` device::
+
+	{
+	    "error": "you are not the owner of the 'from' entity"
+	}
+
+    - If the message-type is ``private`` but the given ``id`` is not the owner of``to`` is not a valid entity::
+
+	{
+	    "error": "'to' is not a valid entity"
+	}
+
+    - If device is not autonomous or there is no such ACL entry::
+
+	{
+	    "error": "unauthorized"
+	}
+
+    - If the requested topic is invalid::
+
+	{
+	    "error": "invalid topic"
+	}
