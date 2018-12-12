@@ -1,7 +1,7 @@
 Publish
 =======
 
-* **Summary**: The publish API is used to publish data from devices to the middleware. To access this API, the device API key obtained after device registration must be used.
+* **Summary**: The publish API is used to publish data from the devices to the middleware. To access this API, the device API key obtained after device registration must be used.
 
 Request
 ^^^^^^^

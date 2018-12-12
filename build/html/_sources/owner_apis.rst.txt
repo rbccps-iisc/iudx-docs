@@ -1,7 +1,7 @@
 Owner APIs
 ==========
 
-These APIs can be called only by the device owner. The block and unblock APIs, however, can also be called by the middleware administrator. 
+These APIs can be called only by the device owner.
 
  .. toctree::
     :maxdepth: 1

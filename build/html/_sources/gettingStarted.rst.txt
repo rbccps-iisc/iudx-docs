@@ -48,7 +48,7 @@ Prerequisites
 
     {"dns": ["8.8.8.8","8.8.4.4","168.95.1.1"]}
 
-   Of course, the DNS would change according to your network.
+   Of course, the DNS will change according to your network.
 
 #. Add DNS in ``/etc/default/docker`` file as follows::
 
@@ -73,7 +73,7 @@ IUDX Installation
 
 Registering your first device
 -----------------------------
-* Once IUDX has installed you can now start registering devices with it. Let's create a simple test device for the sake of illustration
+* Once IUDX has been installed you can now start registering devices with it. Let's create a simple test device for the sake of illustration
 
     - Get the randomly generated admin apikey for the current installation by::
      

@@ -1,7 +1,7 @@
 .. _security_schemes:
 
-Global Security Schemes
-=======================
+Security Schemes
+================
 
 The following subsection enumerates the various security schemes used for accessing all the APIs in the IUDX middleware. Every scheme pertains to a role which is associated with a set of actions, and hence, is authorised only to a restricted subset of the APIs. In any of the security schemes, if either the ``id`` or the ``apikey`` is incorrect, the respective API will give back a ``403 Forbidden`` Although this response is not limited to the situation stated thereof, it is deliberately kept that way for security reasons. Therefore, the above response arising due to incorrect ``id`` or ``apikey`` will not be specifically stated in the detailed description of the individual APIs. However, other situations causing this error, for the specific API, will be covered. 
 

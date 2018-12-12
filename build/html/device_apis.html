@@ -80,7 +80,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Security Schemes</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="owner_apis.html">Owner APIs</a></li>
@@ -91,8 +91,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general_apis.html">General APIs</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help and Support</a></li>
 </ul>
 
             
@@ -161,7 +165,7 @@
             
   <div class="section" id="device-apis">
 <h1>Device APIs<a class="headerlink" href="#device-apis" title="Permalink to this headline">¶</a></h1>
-<p>These set of APIs can be called exclusively by the administrator of the middleware and nobody else. The APIs include registering and deregistering owners with the middleware.</p>
+<p>These set of APIs can be called only by the devices. If the devices are registered with the <code class="docutils literal notranslate"><span class="pre">is-autonomous</span></code> header then further to these APIs, they can also invoke the <a class="reference internal" href="device_owner_apis.html"><span class="doc">Device/Owner APIs</span></a></p>
 <blockquote>
 <div><div class="toctree-wrapper compound">
 <ul>

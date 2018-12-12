@@ -80,7 +80,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Security Schemes</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="owner_apis.html">Owner APIs</a></li>
@@ -102,8 +102,12 @@
 <li class="toctree-l3"><a class="reference internal" href="permissions.html">Permissions</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="general_apis.html">General APIs</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help and Support</a></li>
 </ul>
 
             
@@ -175,9 +179,8 @@
   <div class="section" id="share">
 <h1>Share<a class="headerlink" href="#share" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><strong>Summary</strong>: The “share” API is a data exchange enabling API which is used to approve <code class="docutils literal notranslate"><span class="pre">follow</span></code> requests. When the share API is called by an entity, it grants the necessary permissions to the requestor’s device, i.e, either read access, or write access, or both. The requested entity can poll the <code class="docutils literal notranslate"><span class="pre">follow-requests</span></code> API to check if any new follow requests were made to it. The requesting device, can similarly poll the <code class="docutils literal notranslate"><span class="pre">follow-status</span></code> API to check if the follow request was approved. Once the process completes, the requesting entity can bind to the exchange of the requested entity’s exchange using the <code class="docutils literal notranslate"><span class="pre">bind</span></code> API (in case of read permission) or start writing to the device’s command queue (in case of write permission).</li>
+<li><strong>Summary</strong>: The “share” API is a data exchange enabling API which is used to approve <code class="docutils literal notranslate"><span class="pre">follow</span></code> requests. When the share API is called by an entity, it grants the necessary permissions to the requestor’s device, i.e, either read access, or write access, or both. The requested entity can poll the <code class="docutils literal notranslate"><span class="pre">follow-requests</span></code> API to check if any new follow requests were made to it. The requesting device, can similarly poll the <code class="docutils literal notranslate"><span class="pre">follow-status</span></code> API to check if the follow request was approved. Once the process completes, the requesting entity can bind to the exchange of the requested entity’s exchange using the <code class="docutils literal notranslate"><span class="pre">bind</span></code> API (in case of read permission) or start writing to the device’s command queue (in case of write permission). When the permission is for write access, the scenario is handled a little differently which is explained using the following example. Assume <code class="docutils literal notranslate"><span class="pre">person/app</span></code> would like to control <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>. After the necessary permissions are obtained, although <code class="docutils literal notranslate"><span class="pre">person/app</span></code> publishes to <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>, under the hood the message is actually published to <code class="docutils literal notranslate"><span class="pre">person/app.publish</span></code> with a routing key <code class="docutils literal notranslate"><span class="pre">company/streetlight.command.#</span></code> (if the message’s routing key was #). The <code class="docutils literal notranslate"><span class="pre">person/app.publish</span></code> exchange is bound to <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>’s command queue with the above routing key. This information becomes useful when the publisher uses the AMQP protocol to publish messages.</li>
 </ul>
-<p>When the permission is for write access, the scenario is handled a little differently which is explained using the following example. Assume <code class="docutils literal notranslate"><span class="pre">person/app</span></code> would like to control <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>. After the necessary permissions are obtained, although <code class="docutils literal notranslate"><span class="pre">person/app</span></code> publishes to <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>, under the hood the message is actually published to <code class="docutils literal notranslate"><span class="pre">person/app.publish</span></code> with a routing key <code class="docutils literal notranslate"><span class="pre">company/streetlight.command.#</span></code> (if the message’s routing key was #). The <code class="docutils literal notranslate"><span class="pre">person/app.publish</span></code> exchange is bound to <code class="docutils literal notranslate"><span class="pre">company/streetlight</span></code>’s command queue with the above routing key. This information becomes useful when the publisher uses the AMQP protocol to publish messages.</p>
 <div class="section" id="request">
 <h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
 <ul>

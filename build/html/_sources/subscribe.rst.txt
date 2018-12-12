@@ -13,7 +13,7 @@ Request
 
 * **Method**: ``GET``
 
-* **Security Scheme**: :doc: `Device Credentials <security_schemes>`
+* **Security Scheme**: :doc:`Device Credentials <security_schemes>`
 
 * **Optional Headers**:
 

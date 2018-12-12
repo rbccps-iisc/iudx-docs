@@ -80,7 +80,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gettingStarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Global Security Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_schemes.html">Security Schemes</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="apis.html">API Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="admin_apis.html">Admin APIs</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="owner_apis.html">Owner APIs</a><ul class="current">
@@ -90,14 +90,17 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="deregister_entity.html">Deregister Entity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="block.html">Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="unblock.html">Unblock</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="owner_admin_apis.html">Owner / Admin APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="device_apis.html">Device APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="device_owner_apis.html">Device / Owner APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general_apis.html">General APIs</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help and Support</a></li>
 </ul>
 
             
@@ -169,7 +172,7 @@
   <div class="section" id="register-entity">
 <h1>Register Entity<a class="headerlink" href="#register-entity" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><strong>Summary</strong>: The register entity API is used by the device owners to register new devices with the middleware</li>
+<li><strong>Summary</strong>: The register entity API is used by the device owners to register new devices with the middleware. Every device must have its own schema, or in other words, meta information about the nature of the information that the device publishes. For more information on schemas visit <a class="reference external" href="https://github.com/rbccps-iisc/smart_cities_schemas">here</a></li>
 </ul>
 <div class="section" id="request">
 <h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>

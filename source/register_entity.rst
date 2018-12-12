@@ -1,7 +1,7 @@
 Register Entity
 ===============
 
-* **Summary**: The register entity API is used by the device owners to register new devices with the middleware
+* **Summary**: The register entity API is used by the device owners to register new devices with the middleware. Every device must have its own schema, or in other words, meta information about the nature of the information that the device publishes. For more information on schemas visit `here <https://github.com/rbccps-iisc/smart_cities_schemas>`_
 
 Request
 ^^^^^^^

@@ -1,7 +1,7 @@
 Device APIs
 ===========
 
-These set of APIs can be called exclusively by the administrator of the middleware and nobody else. The APIs include registering and deregistering owners with the middleware. 
+These set of APIs can be called only by the devices. If the devices are registered with the ``is-autonomous`` header then further to these APIs, they can also invoke the :doc:`Device/Owner APIs <device_owner_apis>`          
 
  .. toctree::
     :maxdepth: 1
